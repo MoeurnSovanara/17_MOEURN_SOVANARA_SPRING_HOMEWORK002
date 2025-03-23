@@ -29,3 +29,6 @@ CREATE TABLE tbStudent_Course (
   CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES tbCourses(course_id) ON DELETE CASCADE,
   CONSTRAINT unique_student_course UNIQUE (student_id, course_id)
 );
+
+
+SELECT * FROM tbstudents st INNER JOIN tbStudent_Course stc ON course_id WHERE st.student_id=stc.student_id;

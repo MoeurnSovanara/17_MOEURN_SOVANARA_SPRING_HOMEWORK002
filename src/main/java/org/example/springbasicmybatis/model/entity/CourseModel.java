@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentModel {
-    private Integer student_id;
-    private String student_name;
-    private String email;
-    private String phone_number;
-    private CourseModel course;
-
+public class CourseModel {
+    private Integer course_id;
+    private String course_name;
+    private String description;
+    private InstructorsModel instructor;
 }

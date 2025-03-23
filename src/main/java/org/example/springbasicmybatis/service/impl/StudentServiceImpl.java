@@ -1,5 +1,6 @@
 package org.example.springbasicmybatis.service.impl;
 
+import org.example.springbasicmybatis.model.dto.request.StudentRequest;
 import org.example.springbasicmybatis.model.entity.StudentModel;
 import org.example.springbasicmybatis.repository.StudentRepository;
 import org.example.springbasicmybatis.service.StudentService;
@@ -14,8 +15,17 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
+    // Post Student
     @Override
-    public List<StudentModel> GetAllStudents() {
-        return studentRepository.GetAllStudents();
+    public StudentModel addStudent(StudentRequest studentRequest) {
+        return studentRepository.addStudent(studentRequest);
     }
+
+
+    // Get all Student
+    @Override
+    public List<StudentModel> GetAllStudents(Integer page, Integer size) {
+        return studentRepository.GetAllStudents(page, size);
+    }
+
 }
