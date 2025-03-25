@@ -49,4 +49,14 @@ public interface CourseRepository {
 
 
 
+    @Select("""
+    SELECT c.* FROM tbcourses c
+    JOIN tbstudent_course sc ON c.course_id = sc.course_id
+    WHERE sc.student_id = #{studentId}
+""")
+    List<CourseModel> getCourseByStudentId(@Param("studentId") Integer studentId);
+
+
+
+
 }

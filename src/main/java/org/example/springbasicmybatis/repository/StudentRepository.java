@@ -19,19 +19,14 @@ public interface StudentRepository {
     StudentModel addStudent(@Param("request") StudentRequest studentRequest);
 
 // Get all student
-
-//    @Select("""
-//       SELECT * FROM tbstudents st INNER JOIN public.tbstudent_course tc on st.student_id = tc.student_id WHERE st.student_id=#{id}
-//   """)
-//    List<StudentModel> getStudentsByCourseId(Integer id);
-
-    @Select("""
-        SELECT * FROM tbstudents;
+@Select("""
+        SELECT * FROM tbstudents
+        LIMIT #{size} OFFSET #{page} * #{size}
     """)
-    @Results(id = "studentMapper", value ={
-        @Result(property = "course" , column = "course_id",many = @Many(
-                select = "org.example.springbasicmybatis.repository.InstructorRepository.getStudentsByCourseId"
-        ))
-    })
-    List<StudentModel> GetAllStudents(Integer page, Integer size);
+@Results(id = "studentMapper", value = {
+        @Result(property = "course", column = "course_id",
+                many = @Many(select = "org.example.springbasicmybatis.repository.CourseRepository.getCourseByStudentId"))
+})
+List<StudentModel> GetAllStudents(@Param("page") Integer page, @Param("size") Integer size);
+
 }

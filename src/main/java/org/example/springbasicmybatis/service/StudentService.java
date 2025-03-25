@@ -9,4 +9,5 @@ public interface StudentService {
     List<StudentModel> GetAllStudents(Integer page, Integer size);
 
     StudentModel addStudent(StudentRequest studentRequest);
+
 }
